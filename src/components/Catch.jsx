@@ -22,8 +22,7 @@ function CaptureVisit() {
           time: new Date().toLocaleString(), // Hora local del visitante
           org: response.data.org,
           from: "Publicidad Portafolio",
-          bg:#e7350e ,
-          
+          bg: "#e7350e",
         };
 
         // Enviar los datos al backend para el envío del correo
