@@ -4,12 +4,14 @@ import About from "./components/About";
 import Contact from "./components/Contacts";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
+import CaptureVisit from "./components/Catch";
 import "./App.css";
 
 function App() {
   return (
     <>
       <div className="min-h-screen bg-gray-50">
+        <CaptureVisit />
         <Header />
         <main>
           <Hero />
