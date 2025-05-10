@@ -3,7 +3,11 @@ import {
   FaUserTie,
   FaLightbulb,
   FaHandshake,
+  FaChartLine,
+  FaProjectDiagram,
+  FaAward,
 } from "react-icons/fa";
+import { FiCode, FiServer, FiSettings, FiClock } from "react-icons/fi";
 
 export default function About() {
   return (
@@ -35,26 +39,91 @@ export default function About() {
         </div>
 
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2 flex justify-center">
-            <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                alt="Carlos Landaeta"
-                className="rounded-lg shadow-2xl w-full max-w-md border-4 border-white/30"
-              />
-              <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-4 rounded-lg shadow-lg">
-                <FaUserTie className="text-3xl" />
+          {/* Sección de elementos visuales */}
+          <div className="lg:w-1/2">
+            <div className="grid grid-cols-2 gap-4">
+              {/* 2. Estadísticas */}
+              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 ">
+                <div className="text-center mb-6">
+                  <FaUserTie className="text-4xl text-white mx-auto mb-3" />
+                  <h4 className="text-white text-xl font-bold">
+                    Carlos Landaeta
+                  </h4>
+                  <p className="text-blue-200">Consultor Tecnológico</p>
+                </div>
+              </div>
+
+              {/* 1. Infografía de Habilidades */}
+              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+                <div className="flex justify-center text-blue-300 mb-3">
+                  <FiCode className="text-2xl" />
+                </div>
+                <h4 className="text-white text-center text-sm font-semibold mb-2">
+                  Mis Especialidades
+                </h4>
+                <div className="grid grid-cols-2 gap-2">
+                  {["Full Stack Dev", "Linux", "VoIP", "CCTV"].map((skill) => (
+                    <div
+                      key={skill}
+                      className="flex items-center justify-center"
+                    >
+                      <FaCheckCircle className="text-blue-300 text-xs mr-1" />
+                      <span className="text-white text-xs">{skill}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 3. Timeline */}
+              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 col-span-2">
+                <div className="flex justify-center text-blue-300 mb-3">
+                  <FiClock className="text-2xl" />
+                </div>
+                <h4 className="text-white text-center text-sm font-semibold mb-3">
+                  Mi Trayectoria
+                </h4>
+                <div className="flex justify-between text-xs">
+                  <span className="text-blue-300">2008</span>
+                  <span className="text-blue-300">2012</span>
+                  <span className="text-blue-300">2016</span>
+                  <span className="text-blue-300">2020</span>
+                  <span className="text-blue-300">Ahora</span>
+                </div>
+                <div className="w-full bg-blue-900/40 h-1 rounded-full mt-1 mb-2">
+                  <div className="bg-blue-400 h-1 rounded-full w-full"></div>
+                </div>
+              </div>
+
+              {/* 4. Certificaciones */}
+              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 col-span-2">
+                <div className="flex justify-center text-blue-300 mb-3">
+                  <FaAward className="text-2xl" />
+                </div>
+                <h4 className="text-white text-center text-sm font-semibold mb-2">
+                  Certificaciones
+                </h4>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {["Redes", "Linux", "Python", "VoIP"].map((cert) => (
+                    <span
+                      key={cert}
+                      className="text-white bg-blue-900/40 px-2 py-1 rounded-full text-xs"
+                    >
+                      {cert}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
+          {/* Sección de texto */}
           <div className="lg:w-1/2 text-white">
             <h3 className="text-2xl md:text-3xl font-bold mb-6">
               Hola, soy <span className="text-blue-300">Carlos Landaeta</span>
             </h3>
 
             <p className="text-lg mb-6 text-blue-100">
-              Especialista en soluciones tecnológicas con más de X años de
+              Especialista en soluciones tecnológicas con más de 15 años de
               experiencia ayudando a empresas a optimizar sus procesos mediante
               innovación tecnológica.
             </p>
@@ -72,16 +141,16 @@ export default function About() {
                   <strong className="text-white">
                     Experiencia certificada:
                   </strong>{" "}
-                  Profesional con certificaciones en Full Stack, Linux, Python
+                  Profesional con certificaciones en Full Stack, Linux, Python,
+                  CCTV, Redes, Telefonia VOIP y Tradicional.
                 </p>
               </div>
 
               <div className="flex items-start gap-4">
                 <FaLightbulb className="text-blue-300 text-xl mt-1 flex-shrink-0" />
                 <p className="text-blue-100">
-                  <strong className="text-white">Enfoque innovador:</strong>{" "}
-                  Combino lo último en tecnología con soluciones prácticas y
-                  funcionales
+                  <strong className="text-white">Innovador:</strong> Combino lo
+                  último en tecnología con soluciones prácticas y funcionales.
                 </p>
               </div>
 
@@ -90,7 +159,7 @@ export default function About() {
                 <p className="text-blue-100">
                   <strong className="text-white">Compromiso total:</strong>{" "}
                   Acompañamiento personalizado desde el diseño hasta la
-                  implementación
+                  implementación.
                 </p>
               </div>
             </div>

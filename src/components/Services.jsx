@@ -19,6 +19,11 @@ export default function Services() {
         "Desarrollo de sitios web modernos, responsivos y optimizados para SEO que representan tu marca profesionalmente.",
       icon: <FiCode className="text-3xl" />,
       color: "text-purple-600",
+      benefits: [
+        "Diseño 100% responsive",
+        "Optimización SEO integrada",
+        "Tiempos de carga rápidos",
+      ],
     },
     {
       title: "Asesoría en Telecomunicaciones",
@@ -26,20 +31,35 @@ export default function Services() {
         "Soluciones personalizadas en infraestructura de redes y comunicaciones para optimizar tus operaciones.",
       icon: <FiServer className="text-3xl" />,
       color: "text-blue-600",
+      benefits: [
+        "Análisis de infraestructura",
+        "Planificación escalable",
+        "Soporte técnico especializado",
+      ],
     },
     {
       title: "Infraestructura de Call Center",
       description:
-        "Sistemas completos para centros de contacto con tecnología de punta, reporting avanzado y deteccion de Buzones de Voz.",
+        "Sistemas completos para centros de contacto con tecnología de punta, reporting avanzado y deteccion de Buzones de Voz..",
       icon: <FiPhone className="text-3xl" />,
       color: "text-green-600",
+      benefits: [
+        "Integración con CRM",
+        "Reportes en tiempo real",
+        "Alta disponibilidad",
+      ],
     },
     {
       title: "Administración de PBX",
       description:
-        "Implementacion y mantenimiento de centrales telefónicas empresariales con máxima eficiencia.",
+        "Configuración y mantenimiento de centrales telefónicas empresariales con máxima eficiencia.",
       icon: <FiSettings className="text-3xl" />,
       color: "text-yellow-600",
+      benefits: [
+        "Configuraciones avanzadas",
+        "Monitoreo 24/7",
+        "Actualizaciones periódicas",
+      ],
     },
     {
       title: "Creación de IVR",
@@ -47,6 +67,11 @@ export default function Services() {
         "Diseño de menús interactivos personalizados para mejorar la experiencia del cliente.",
       icon: <FiBarChart2 className="text-3xl" />,
       color: "text-red-600",
+      benefits: [
+        "Flujos personalizados",
+        "Integración con bases de datos",
+        "Integracion con Agentes IA",
+      ],
     },
     {
       title: "Sistemas de Inventario",
@@ -54,6 +79,11 @@ export default function Services() {
         "Soluciones de gestión de inventario con generación de reportes estadísticos en tiempo real.",
       icon: <FiCpu className="text-3xl" />,
       color: "text-indigo-600",
+      benefits: [
+        "Control de stock preciso",
+        "Alertas automáticas",
+        "Integración con puntos de venta",
+      ],
     },
     {
       title: "CCTV y Control de Acceso",
@@ -61,6 +91,11 @@ export default function Services() {
         "Sistemas de seguridad integrados con análisis inteligente y monitoreo remoto.",
       icon: <FiVideo className="text-3xl" />,
       color: "text-pink-600",
+      benefits: [
+        "Grabación en la nube",
+        "Reconocimiento facial",
+        "Alertas en tiempo real",
+      ],
     },
     {
       title: "Desarrollo Full Stack",
@@ -68,6 +103,11 @@ export default function Services() {
         "Aplicaciones web completas con arquitectura escalable y alto rendimiento.",
       icon: <FiCode className="text-3xl" />,
       color: "text-teal-600",
+      benefits: [
+        "Tecnologías modernas",
+        "Arquitectura escalable",
+        "Pruebas automatizadas",
+      ],
     },
     {
       title: "Automatización de Procesos",
@@ -75,9 +115,13 @@ export default function Services() {
         "Implementación de RPA y sistemas inteligentes para aumentar tu productividad.",
       icon: <FiZap className="text-3xl" />,
       color: "text-orange-600",
+      benefits: [
+        "Reducción de errores",
+        "Ahorro de tiempo",
+        "Integración con sistemas existentes",
+      ],
     },
   ];
-
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -157,12 +201,12 @@ export default function Services() {
               </div>
               <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
                 <div className="flex flex-wrap gap-2">
-                  {[...Array(3)].map((_, i) => (
+                  {service.benefits.map((benefit, i) => (
                     <span
                       key={i}
                       className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600"
                     >
-                      Beneficio {i + 1}
+                      {benefit}
                     </span>
                   ))}
                 </div>

@@ -1,23 +1,66 @@
-import {
-  FaPhoneAlt,
-  FaClock,
-  FaLinkedin,
-  FaWhatsapp,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
+import { FaPhoneAlt, FaClock, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useState } from "react";
+import { FiCheckCircle, FiAlertCircle } from "react-icons/fi";
+
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Contact() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    // Lógica de envío del formulario
-    console.log(data);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const msj = {
+      msj: {
+        nombre: data.name,
+        email: data.email,
+        telefono: data.phone || "No proporcionado",
+        mensaje: data.message,
+        asunto: `Nuevo mensaje de ${data.name} desde el sitio web`,
+      },
+    };
+
+    const backUrl = import.meta.env.VITE_BK_URL + "/mensaje2";
+
+    try {
+      const response = await axios.post(backUrl, msj);
+
+      if (response.data.ok) {
+        setSubmitStatus("success");
+        setSubmitMessage("¡Mensaje enviado con éxito! Te responderé pronto.");
+        reset();
+      } else {
+        setSubmitStatus("error");
+        setSubmitMessage(
+          "Hubo un problema al enviar el mensaje. Por favor intenta nuevamente."
+        );
+      }
+    } catch (error) {
+      console.error(error);
+      setSubmitStatus("error");
+      setSubmitMessage(
+        "Error de conexión. Por favor verifica tu conexión e intenta nuevamente."
+      );
+    } finally {
+      setIsSubmitting(false);
+      // Ocultar el mensaje después de 5 segundos
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+    }
   };
 
   const contactMethods = [
@@ -40,22 +83,10 @@ export default function Contact() {
     {
       icon: <FaClock className="text-2xl" />,
       title: "Horario de Atención",
-      content: "Lun-Vie: 8:00 - 18:00",
+      content: "Lun - Vie: 8:00 - 18:00",
     },
   ];
-  const contactMethods2 = [
-    {
-      icon: <FaLinkedin className="text-2xl" />,
-      link: "https://www.linkedin.com/in/carlos-landaeta-dev/",
-      class: "hover:text-blue-600 transition-colors",
-    },
-    {
-      icon: <FaWhatsapp className="text-2xl" />,
-      link: "https://www.linkedin.com/in/carlos-landaeta-dev/",
-      class: "hover:text-green-600 transition-colors",
-    },
-  ];
-  // Marcas con las que trabajas
+
   const partnerBrands = [
     { name: "Hikvision", logo: "/brands/hikvision.jpg" },
     { name: "Ubiquiti", logo: "/brands/ubiquiti.png" },
@@ -128,7 +159,7 @@ export default function Contact() {
               <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">
                 Marcas con las que trabajamos
               </h3>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
                 {partnerBrands.map((brand, index) => (
                   <motion.div
                     key={index}
@@ -153,19 +184,20 @@ export default function Contact() {
 
             {/* Redes Sociales */}
             <div className="flex justify-center gap-6 pt-8">
-              {contactMethods2.map((contact, index) => (
-                <ul key={index}>
-                  <a
-                    href={contact.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`text-gray-60 ${contact.class} `}
-                    aria-label="LinkedIn"
-                  >
-                    {contact.icon}
-                  </a>
-                </ul>
-              ))}
+              <a
+                href="#"
+                className="text-gray-600 hover:text-blue-600 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin className="text-2xl" />
+              </a>
+              <a
+                href="#"
+                className="text-gray-600 hover:text-green-600 transition-colors"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp className="text-2xl" />
+              </a>
             </div>
           </div>
 
@@ -177,6 +209,24 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
             className="bg-white p-8 rounded-xl shadow-xl border border-gray-100"
           >
+            {/* Mensaje de estado */}
+            {submitStatus && (
+              <div
+                className={`mb-6 p-4 rounded-lg flex items-start ${
+                  submitStatus === "success"
+                    ? "bg-green-50 text-green-800"
+                    : "bg-red-50 text-red-800"
+                }`}
+              >
+                {submitStatus === "success" ? (
+                  <FiCheckCircle className="text-xl mr-3 mt-0.5 flex-shrink-0" />
+                ) : (
+                  <FiAlertCircle className="text-xl mr-3 mt-0.5 flex-shrink-0" />
+                )}
+                <div>{submitMessage}</div>
+              </div>
+            )}
+
             <div className="space-y-6">
               <div>
                 <label
@@ -188,14 +238,14 @@ export default function Contact() {
                 <input
                   type="text"
                   id="name"
-                  {...register("name", { required: true })}
+                  {...register("name", { required: "Este campo es requerido" })}
                   className={`w-full px-4 py-3 rounded-lg border ${
                     errors.name ? "border-red-500" : "border-gray-300"
                   } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                 />
                 {errors.name && (
                   <p className="text-red-500 text-sm mt-1">
-                    Este campo es requerido
+                    {errors.name.message}
                   </p>
                 )}
               </div>
@@ -211,8 +261,11 @@ export default function Contact() {
                   type="email"
                   id="email"
                   {...register("email", {
-                    required: true,
-                    pattern: /^\S+@\S+$/i,
+                    required: "Este campo es requerido",
+                    pattern: {
+                      value: /^\S+@\S+$/i,
+                      message: "Ingrese un email válido",
+                    },
                   })}
                   className={`w-full px-4 py-3 rounded-lg border ${
                     errors.email ? "border-red-500" : "border-gray-300"
@@ -220,7 +273,7 @@ export default function Contact() {
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1">
-                    Ingrese un email válido
+                    {errors.email.message}
                   </p>
                 )}
               </div>
@@ -250,14 +303,16 @@ export default function Contact() {
                 <textarea
                   id="message"
                   rows="5"
-                  {...register("message", { required: true })}
+                  {...register("message", {
+                    required: "Este campo es requerido",
+                  })}
                   className={`w-full px-4 py-3 rounded-lg border ${
                     errors.message ? "border-red-500" : "border-gray-300"
                   } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                 ></textarea>
                 {errors.message && (
                   <p className="text-red-500 text-sm mt-1">
-                    Este campo es requerido
+                    {errors.message.message}
                   </p>
                 )}
               </div>
@@ -266,19 +321,55 @@ export default function Contact() {
                 <input
                   type="checkbox"
                   id="privacy"
-                  {...register("privacy", { required: true })}
+                  {...register("privacy", {
+                    required: "Debes aceptar la política de privacidad",
+                  })}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
                 <label htmlFor="privacy" className="ml-2 text-sm text-gray-600">
                   Acepto la política de privacidad
                 </label>
               </div>
+              {errors.privacy && (
+                <p className="text-red-500 text-sm -mt-4">
+                  {errors.privacy.message}
+                </p>
+              )}
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg"
+                disabled={isSubmitting}
+                className={`w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg ${
+                  isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                }`}
               >
-                Enviar Mensaje
+                {isSubmitting ? (
+                  <span className="flex items-center justify-center">
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Enviando...
+                  </span>
+                ) : (
+                  "Enviar Mensaje"
+                )}
               </button>
             </div>
           </motion.form>
