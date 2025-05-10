@@ -1,9 +1,9 @@
 import {
-  FaMapMarkerAlt,
   FaPhoneAlt,
   FaClock,
   FaLinkedin,
   FaWhatsapp,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
@@ -22,15 +22,14 @@ export default function Contact() {
 
   const contactMethods = [
     {
-      icon: <FaMapMarkerAlt className="text-2xl" />,
-      title: "Oficina Principal",
-      content: "Caracas, Venezuela",
-      link: "https://goo.gl/maps/ejemplo",
-    },
-    {
       icon: <FaPhoneAlt className="text-2xl" />,
       title: "Contacto Directo",
       content: "+58 424 221 1795",
+    },
+    {
+      icon: <FaMapMarkerAlt className="text-2xl" />,
+      title: "Oficina Principal",
+      content: "Caracas, Venezuela",
     },
     {
       icon: <FaWhatsapp className="text-2xl" />,
@@ -42,8 +41,34 @@ export default function Contact() {
       icon: <FaClock className="text-2xl" />,
       title: "Horario de Atención",
       content: "Lun-Vie: 8:00 - 18:00",
-      subcontent: "Sáb: 8:00 - 14:00",
     },
+  ];
+  const contactMethods2 = [
+    {
+      icon: <FaLinkedin className="text-2xl" />,
+      link: "https://www.linkedin.com/in/carlos-landaeta-dev/",
+      class: "hover:text-blue-600 transition-colors",
+    },
+    {
+      icon: <FaWhatsapp className="text-2xl" />,
+      link: "https://www.linkedin.com/in/carlos-landaeta-dev/",
+      class: "hover:text-green-600 transition-colors",
+    },
+  ];
+  // Marcas con las que trabajas
+  const partnerBrands = [
+    { name: "Hikvision", logo: "/brands/hikvision.jpg" },
+    { name: "Ubiquiti", logo: "/brands/ubiquiti.png" },
+    { name: "MikroTik", logo: "/brands/mikrotik.png" },
+    { name: "Cisco", logo: "/brands/cisco.png" },
+    { name: "Asterisk", logo: "/brands/asterisk.png" },
+    { name: "FreeSWITCH", logo: "/brands/freeswitch.png" },
+    { name: "Grandstream", logo: "/brands/grandstream.png" },
+    { name: "Yealink", logo: "/brands/yealink.png" },
+    { name: "Dahua", logo: "/brands/dahua.png" },
+    { name: "3CX", logo: "/brands/3cx.png" },
+    { name: "Issabel PBX", logo: "/brands/issabel.png" },
+    { name: "Vicidial", logo: "/brands/vicidial.png" },
   ];
 
   return (
@@ -92,43 +117,55 @@ export default function Contact() {
                       ) : (
                         <p className="text-gray-600">{method.content}</p>
                       )}
-                      {method.subcontent && (
-                        <p className="text-gray-600 text-sm mt-1">
-                          {method.subcontent}
-                        </p>
-                      )}
                     </div>
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Mapa */}
-            <div className="rounded-xl overflow-hidden shadow-lg border border-gray-200">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317715.7119263355!2d-0.3817834693149665!3d51.52873519604515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondres%2C%20Reino%20Unido!5e0!3m2!1ses!2ses!4v1687273251398!5m2!1ses!2ses"
-                className="w-full h-64"
-                loading="lazy"
-                title="Ubicación en mapa"
-              ></iframe>
+            {/* Sección de Marcas */}
+            <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">
+                Marcas con las que trabajamos
+              </h3>
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+                {partnerBrands.map((brand, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.05 }}
+                    className="flex flex-col items-center p-3"
+                  >
+                    <div className="h-16 w-16 flex items-center justify-center">
+                      <img
+                        src={brand.logo}
+                        alt={brand.name}
+                        className="max-h-full max-w-full object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                    <span className="text-xs text-gray-600 mt-2 text-center">
+                      {brand.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             {/* Redes Sociales */}
             <div className="flex justify-center gap-6 pt-8">
-              <a
-                href="#"
-                className="text-gray-600 hover:text-blue-600 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin className="text-2xl" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-600 hover:text-green-600 transition-colors"
-                aria-label="WhatsApp"
-              >
-                <FaWhatsapp className="text-2xl" />
-              </a>
+              {contactMethods2.map((contact, index) => (
+                <ul key={index}>
+                  <a
+                    href={contact.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-gray-60 ${contact.class} `}
+                    aria-label="LinkedIn"
+                  >
+                    {contact.icon}
+                  </a>
+                </ul>
+              ))}
             </div>
           </div>
 

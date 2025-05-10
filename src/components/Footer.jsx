@@ -31,7 +31,29 @@ export default function Footer() {
     { icon: <FiMail className="mr-2" />, text: "cmlandaeta@gmail.com.com" },
     { icon: <FiPhone className="mr-2" />, text: "+58 424 221 795" },
     { icon: <FiMapPin className="mr-2" />, text: "Caracas, Venezuela" },
-    { icon: <FiClock className="mr-2" />, text: "Lun-Vie: 9:00 - 18:00" },
+    {
+      icon: <FiClock className="mr-2" />,
+      text: "Lun - Vie: 8:00 - 18:00",
+    },
+  ];
+
+  const contactMethods = [
+    {
+      icon: <FaLinkedin className="text-xl" />,
+
+      link: "https://www.linkedin.com/in/carlos-landaeta-dev/",
+    },
+
+    {
+      icon: <FaInstagram className="text-xl" />,
+
+      link: "https://www.instagram.com/landaetacm/",
+    },
+    {
+      icon: <FaGithub className="text-xl" />,
+
+      link: "https://github.com/cmlandaeta",
+    },
   ];
 
   return (
@@ -50,42 +72,18 @@ export default function Footer() {
               optimizar tus procesos.
             </p>
             <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaFacebook className="text-xl" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaLinkedin className="text-xl" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaTwitter className="text-xl" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaInstagram className="text-xl" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaYoutube className="text-xl" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaGithub className="text-xl" />
-              </a>
+              {contactMethods.map((contact, index) => (
+                <ul key={index}>
+                  <a
+                    href={contact.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    {contact.icon}
+                  </a>
+                </ul>
+              ))}
             </div>
           </div>
 

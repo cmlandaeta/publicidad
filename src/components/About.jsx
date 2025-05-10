@@ -17,10 +17,7 @@ export default function About() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-background-158-large.mp4"
-            type="video/mp4"
-          />
+          <source src="/video/video.mp4" type="video/mp4" />
           Tu navegador no soporta videos HTML5.
         </video>
         <div className="absolute inset-0 bg-blue-900/70"></div>
@@ -42,7 +39,7 @@ export default function About() {
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                alt="Tu Nombre"
+                alt="Carlos Landaeta"
                 className="rounded-lg shadow-2xl w-full max-w-md border-4 border-white/30"
               />
               <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-4 rounded-lg shadow-lg">
@@ -53,7 +50,7 @@ export default function About() {
 
           <div className="lg:w-1/2 text-white">
             <h3 className="text-2xl md:text-3xl font-bold mb-6">
-              Hola, soy <span className="text-blue-300">[Tu Nombre]</span>
+              Hola, soy <span className="text-blue-300">Carlos Landaeta</span>
             </h3>
 
             <p className="text-lg mb-6 text-blue-100">
@@ -75,8 +72,7 @@ export default function About() {
                   <strong className="text-white">
                     Experiencia certificada:
                   </strong>{" "}
-                  Profesional con certificaciones en [tus certificaciones
-                  relevantes]
+                  Profesional con certificaciones en Full Stack, Linux, Python
                 </p>
               </div>
 

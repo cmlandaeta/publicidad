@@ -30,14 +30,14 @@ export default function Services() {
     {
       title: "Infraestructura de Call Center",
       description:
-        "Sistemas completos para centros de contacto con tecnología de punta y reporting avanzado.",
+        "Sistemas completos para centros de contacto con tecnología de punta, reporting avanzado y deteccion de Buzones de Voz.",
       icon: <FiPhone className="text-3xl" />,
       color: "text-green-600",
     },
     {
       title: "Administración de PBX",
       description:
-        "Configuración y mantenimiento de centrales telefónicas empresariales con máxima eficiencia.",
+        "Implementacion y mantenimiento de centrales telefónicas empresariales con máxima eficiencia.",
       icon: <FiSettings className="text-3xl" />,
       color: "text-yellow-600",
     },
