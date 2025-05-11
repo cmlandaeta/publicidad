@@ -91,6 +91,19 @@ export default function Contact() {
     },
   ];
 
+  const contactMethods2 = [
+    {
+      icon: <FaWhatsapp className="text-2xl" />,
+      class: "text-gray-600 hover:text-green-600 transition-colors",
+      link: "https://wa.me/+584242211795",
+    },
+    {
+      icon: <FaLinkedin className="text-2xl" />,
+      class: "text-gray-600 hover:text-blue-600 transition-colors",
+      link: "https://www.linkedin.com/in/carlos-landaeta-dev/",
+    },
+  ];
+
   const partnerBrands = [
     { name: "Hikvision", logo: "/brands/hikvision.jpg" },
     { name: "Ubiquiti", logo: "/brands/ubiquiti.png" },
@@ -188,20 +201,18 @@ export default function Contact() {
 
             {/* Redes Sociales */}
             <div className="flex justify-center gap-6 pt-8">
-              <a
-                href="#"
-                className="text-gray-600 hover:text-blue-600 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin className="text-2xl" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-600 hover:text-green-600 transition-colors"
-                aria-label="WhatsApp"
-              >
-                <FaWhatsapp className="text-2xl" />
-              </a>
+              {contactMethods2.map((contact, index) => (
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={index}
+                  href={contact.link}
+                  className={contact.class}
+                  aria-label="WhatsApp"
+                >
+                  {contact.icon}
+                </a>
+              ))}
             </div>
           </div>
 

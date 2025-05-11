@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiCode } from "react-icons/fi"; // Icono para tu título profesional
-
+const ws = "https://wa.me/+584242211795";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -45,10 +45,10 @@ export default function Header() {
     <>
       {/* WhatsApp flotante */}
       <a
-        href="https://wa.me/tunumero"
+        href={ws}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 animate-bounce"
+        className="fixed bottom-6 sm:mr-4 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 "
       >
         <FaWhatsapp className="text-2xl" />
       </a>
