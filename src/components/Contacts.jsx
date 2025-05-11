@@ -40,8 +40,9 @@ export default function Contact() {
 
     try {
       const response = await axios.post(backUrl, msj);
+      console.log(response.status);
 
-      if (response.data.ok) {
+      if (response.status === 200) {
         setSubmitStatus("success");
         setSubmitMessage("¡Mensaje enviado con éxito! Te responderé pronto.");
         reset();

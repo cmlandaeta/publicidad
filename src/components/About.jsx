@@ -103,7 +103,7 @@ export default function About() {
                   Certificaciones
                 </h4>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {["Redes", "Linux", "Python", "VoIP"].map((cert) => (
+                  {["Redes", "Linux", "Python", "VoIP", "CCTV"].map((cert) => (
                     <span
                       key={cert}
                       className="text-white bg-blue-900/40 px-2 py-1 rounded-full text-xs"
