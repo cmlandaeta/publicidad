@@ -24,13 +24,16 @@ export default function Contact() {
     setSubmitStatus(null);
 
     const msj = {
-      nombre: data.name,
-      email: data.email,
-      fecha: Date(),
-      telefono: data.phone || "No proporcionado",
-      mensaje: data.message,
-      asunto: `Nuevo mensaje de ${data.name} desde el Publicidad Portafolio`,
-      from: "Publicidad Portafolio",
+      msj: {
+        nombre: data.name,
+        email: data.email,
+        fecha: Date(),
+        telefono: data.phone || "No proporcionado",
+        mensaje: data.message,
+        asunto: `Nuevo mensaje de ${data.name} desde el Publicidad Portafolio`,
+        from: "Publicidad Portafolio",
+        bg: "e7350e",
+      },
     };
 
     const backUrl = import.meta.env.VITE_BK_URL + "/mensaje2";
